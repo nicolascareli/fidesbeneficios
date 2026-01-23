@@ -114,6 +114,40 @@ body {
     .hero-section {
         text-align: center;
     }
+    .hero-section-e {
+        text-align: center;
+    }
+}
+
+.hero-section-e {
+    /* Altura mínima da tela */
+    min-height: 700px;
+    /* Imagem de fundo (troque o nome do arquivo se precisar) */
+    background-image: url("../img/Banner-topo-empresarial-26.png");
+    /* Faz a imagem ocupar tudo */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Overlay escuro para melhorar leitura do texto */
+    position: relative;
+}
+
+
+/* Camada escura por cima da imagem */
+
+.hero-section-e::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+
+/* Garante que o conteúdo fique acima do overlay */
+
+.hero-section-e .container {
+    position: relative;
+    z-index: 2;
 }
 
 .navbar-brand {
@@ -230,6 +264,11 @@ body {
     margin-top: -10rem !important;
 }
 
+.img-tele-empresas {
+    max-width: 600px !important;
+    margin-top: -5rem !important;
+}
+
 .solucao-section {
     /* Fundo branco para contraste com a dor */
     background-color: #ffffff;
@@ -275,8 +314,8 @@ body {
     width: 90px;
     height: 90px;
     margin: 0 auto 20px;
-    background-color: #0d6efd;
-    /* azul Bootstrap */
+    background: linear-gradient( rgb(173, 1, 165), #ff00c8);
+    box-shadow: 0 16px 38px rgba(255, 0, 242, 0.22);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -364,170 +403,411 @@ body {
 }
 
 
-/* ========== SEÇÃO PLANOS ========== */
+/* =========================
+  [Fides] COMO FUNCIONA — Slider Mobile / Grid Desktop
+  Classes: .como-slider .como-slide
+========================== */
 
-.img-plano {
-    max-height: 100% !important;
-    max-width: 100% !important;
-    border-radius: 20px !important;
+
+/* Mobile-first: arrastar */
+
+.como-slider {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 6px 4px 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
 }
 
+.como-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.como-slide {
+    flex: 0 0 85%;
+    max-width: 85%;
+    min-width: 260px;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+
+/* Desktop: vira grid 3 colunas */
+
+@media (min-width: 992px) {
+    .como-slider {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        overflow: visible;
+        padding: 0;
+    }
+    .como-slide {
+        flex: initial;
+        max-width: none;
+        min-width: 0;
+    }
+}
+
+
+/* =========================
+  [Fides] SEÇÃO PLANOS — PREMIUM
+========================== */
+
 .planos-section {
-    background-color: #ffffff;
+    background: radial-gradient(900px 550px at 20% 10%, rgba(122, 70, 255, .14), transparent 60%), radial-gradient(900px 550px at 80% 25%, rgba(30, 75, 216, .10), transparent 60%), linear-gradient(180deg, #F7FAFF, #EEF4FF);
     padding: 80px 0;
 }
 
 .planos-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #212529;
+    font-size: 2.1rem;
+    font-weight: 950;
+    letter-spacing: -.3px;
+    color: #1b1b2a;
 }
 
 
-/* CARD DO PLANO */
+/* Imagem */
+
+.img-plano {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 18px;
+    box-shadow: 0 14px 40px rgba(30, 20, 90, .12);
+}
+
+
+/* Card base (glass premium) */
 
 .plano-card {
-    background-color: #f8f9fa;
-    padding: 30px 25px;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
-    /* ISSO GARANTE ALTURA IGUAL */
     width: 100%;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease;
+    border-radius: 22px;
+    padding: 22px 22px;
+    background: rgba(255, 255, 255, .78);
+    border: 1px solid rgba(27, 27, 42, .10);
+    box-shadow: 0 18px 60px rgba(30, 20, 90, .12);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
 
 .plano-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
+    box-shadow: 0 22px 70px rgba(30, 20, 90, .16);
 }
 
 
-/* PLANO EM DESTAQUE */
+/* Título/subtítulo do plano */
 
-.plano-destaque {
-    border: 2px solid #0d6efd;
+.plano-titulo {
+    font-weight: 950;
+    color: #1b1b2a;
+    letter-spacing: -.2px;
+    margin-bottom: .25rem;
 }
 
-.plano-simples {
-    border: 2px solid #dad9d9;
-}
-
-
-/* NOME */
-
-.plano-nome {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #0d6efd;
-    margin-bottom: 10px;
+.plano-subtitulo {
+    color: rgba(27, 27, 42, .66);
+    font-weight: 650;
+    font-size: .98rem;
 }
 
 
-/* PREÇO */
+/* Preço com hierarquia */
 
 .plano-preco {
-    margin: 15px 0;
+    margin: 16px 0 10px;
 }
 
 .preco-valor {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #0400ff;
+    font-size: 2.55rem;
+    font-weight: 1000;
+    color: #1b1b2a;
+    letter-spacing: -.6px;
+}
+
+.preco-mes {
+    color: rgba(27, 27, 42, .60);
+    font-weight: 800;
+    margin-left: 6px;
 }
 
 
-/* LISTA */
+/* Lista mais clean com check via CSS */
 
 .plano-lista {
     list-style: none;
     padding: 0;
-    margin: 20px 0;
+    margin: 14px 0 18px;
     text-align: left;
+    display: grid;
+    gap: .55rem;
 }
 
 .plano-lista li {
-    margin-bottom: 8px;
-    color: #495057;
+    position: relative;
+    padding-left: 1.45rem;
+    color: rgba(27, 27, 42, .80);
+    font-weight: 750;
+    line-height: 1.25;
+}
+
+.plano-lista li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    top: .02rem;
+    color: #5A2CCB;
+    font-weight: 950;
 }
 
 
-/* BOTÃO SEMPRE EMBAIXO */
+/* Botão sempre embaixo */
 
-.plano-card .btn {
+.plano-card .btn-fides {
     margin-top: auto;
 }
 
 
-/* MOBILE */
+/* Plano simples (mais neutro) */
+
+.plano-simples {
+    border-color: rgba(27, 27, 42, .12);
+}
+
+
+/* Plano destaque (carro-chefe) */
+
+.plano-destaque {
+    border-color: rgba(90, 44, 203, .25);
+    box-shadow: 0 24px 80px rgba(30, 20, 90, .18);
+    transform: translateY(-2px);
+}
+
+
+/* Faixa superior do destaque (premium) */
+
+.plano-destaque::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 6px;
+    background: linear-gradient(90deg, #5A2CCB, #4D84FF, #7A46FF);
+}
+
+
+/* Badge “Mais vendido” */
+
+.plano-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-weight: 950;
+    font-size: .72rem;
+    letter-spacing: .6px;
+    color: #0b1220;
+    background: linear-gradient(90deg, #E46314, #ffb15c);
+    padding: .38rem .65rem;
+    border-radius: 999px;
+    box-shadow: 0 12px 26px rgba(228, 99, 20, .22);
+    z-index: 2;
+}
+
+
+/* Mobile */
 
 @media (max-width: 768px) {
     .planos-title {
-        font-size: 1.6rem;
+        font-size: 1.7rem;
     }
+    .preco-valor {
+        font-size: 2.2rem;
+    }
+}
+
+
+/* =========================
+  [Fides] CHIP — Diferencial do plano (discreto)
+========================== */
+
+.plano-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: .35rem auto .35rem;
+    padding: .34rem .7rem;
+    border-radius: 999px;
+    font-weight: 900;
+    font-size: .78rem;
+    letter-spacing: .2px;
+    color: rgba(27, 27, 42, .86);
+    background: rgba(90, 44, 203, .10);
+    border: 1px solid rgba(90, 44, 203, .16);
 }
 
 
 /* ========== PROVA SOCIAL ========== */
 
-.prova-social-section {
-    background-color: #ffffff;
-    padding: 0px 0;
+
+/* =========================
+  [HOME] PROVA SOCIAL — SLIDING REVIEWS (estilo Hostinger)
+  Classes: .psl-*
+========================== */
+
+.psl-section {
+    padding: 72px 0;
+    background: #ffffff;
 }
 
-.prova-social-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #212529;
+.psl-title {
+    font-weight: 800;
+    letter-spacing: -0.02em;
 }
 
-.prova-social-subtitle {
-    font-size: 1rem;
+.psl-subtitle {
     color: #6c757d;
     margin-top: 10px;
 }
 
 
-/* CARD DEPOIMENTO */
+/* Wrapper com “fade” nas laterais */
 
-.depoimento-card {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 40px 30px;
-    background: linear-gradient(135deg, #0d6efd, #09008a);
-    border-radius: 14px;
-    text-align: center;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-}
-
-.depoimento-text {
-    font-size: 1.05rem;
-    color: #ffffff;
-    margin-bottom: 20px;
-}
-
-.depoimento-nome {
-    font-weight: 600;
-    color: #ffffff;
+.psl-marquee-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    padding: 6px 0;
 }
 
 
-/* CONTROLES DO CARROSSEL */
+/* Fade left/right */
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    filter: invert(1);
+.psl-marquee-wrap::before,
+.psl-marquee-wrap::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 120px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.psl-marquee-wrap::before {
+    left: 0;
+    background: linear-gradient(to right, #ffffff 25%, rgba(255, 255, 255, 0));
+}
+
+.psl-marquee-wrap::after {
+    right: 0;
+    background: linear-gradient(to left, #ffffff 25%, rgba(255, 255, 255, 0));
 }
 
 
-/* MOBILE */
+/* cada linha */
 
-@media (max-width: 768px) {
-    .prova-social-title {
-        font-size: 1.6rem;
+.psl-marquee {
+    overflow: hidden;
+    margin: 0;
+}
+
+
+/* trilha que se move */
+
+.psl-track {
+    display: flex;
+    gap: 14px;
+    width: max-content;
+    will-change: transform;
+    animation: psl-scroll var(--psl-duration, 40s) linear infinite;
+}
+
+
+/* pausa ao passar mouse (desktop) */
+
+@media (hover:hover) {
+    .psl-marquee-wrap:hover .psl-track {
+        animation-play-state: paused;
     }
-    .depoimento-card {
-        padding: 30px 20px;
+}
+
+
+/* Card */
+
+.psl-card {
+    flex: 0 0 auto;
+    width: clamp(260px, 32vw, 420px);
+    background: #f9f8ff;
+    border-radius: 18px;
+    padding: 30px 40px 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .05);
+    border: 1px solid rgba(255, 0, 234, 0.1);
+}
+
+.psl-person {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.psl-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, .18);
+}
+
+.psl-name {
+    display: block;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.psl-loc {
+    display: block;
+    font-size: .9rem;
+    color: #6c757d;
+    margin-top: 2px;
+}
+
+.psl-text {
+    margin: 0;
+    color: #212529;
+    font-weight: 500;
+    line-height: 1.45;
+}
+
+
+/* animação base (direção default = esquerda) */
+
+@keyframes psl-scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(-1 * var(--psl-shift, 50%)));
+    }
+}
+
+
+/* acessibilidade */
+
+@media (prefers-reduced-motion: reduce) {
+    .psl-track {
+        animation: none !important;
+    }
+    .psl-marquee-wrap::before,
+    .psl-marquee-wrap::after {
+        display: none;
     }
 }
 
@@ -604,10 +884,59 @@ body {
 }
 
 
+/* =========================
+  [Fides] CONFIANÇA — SLIDER MOBILE (blindado)
+========================== */
+
+.confianca-slider {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 16px;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 6px 4px 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.confianca-slider::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Cada card vira um slide com largura controlada (não gigante) */
+
+.confianca-slide {
+    flex: 0 0 85%;
+    max-width: 85%;
+    min-width: 260px;
+    scroll-snap-align: start;
+}
+
+
+/* Desktop: volta pra 4 colunas */
+
+@media (min-width: 992px) {
+    .confianca-slider {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        overflow: visible !important;
+        padding: 0;
+    }
+    .confianca-slide {
+        flex: initial;
+        max-width: none;
+        min-width: 0;
+    }
+}
+
+
 /* ========== CTA FINAL ========== */
 
 .cta-final-section {
-    background: linear-gradient(135deg, #198754, #0d6efd);
+    background: linear-gradient(135deg, #f700ff, #0d6efd);
     padding: 90px 0;
     color: #ffffff;
 }
@@ -841,3 +1170,900 @@ body {
 
 
 /* ========== MODAL DE PLANOS ========== */
+
+
+/* ===============================
+   HEADER EMPRESAS
+================================ */
+
+.header-empresas {
+    min-height: 100vh;
+    /* ocupa a tela toda */
+    background: linear-gradient( rgba(0, 70, 140, 0.85), rgba(0, 70, 140, 0.85)), url("../image/bg-empresas.jpg");
+    /* imagem de fundo */
+    background-size: cover;
+    background-position: center;
+    padding-top: 120px;
+    /* espaço por causa do navbar fixed */
+}
+
+
+/* Ajustes de texto no mobile */
+
+@media (max-width: 768px) {
+    .header-empresas {
+        text-align: center;
+    }
+    .header-empresas h1 {
+        font-size: 2rem;
+    }
+}
+
+
+/* ===============================
+   FOMULÁRIO - EMPRESAS
+================================ */
+
+
+/* ====== TEMA FIDES (escopado) ====== */
+
+.fides-form {
+    --fides-blue-900: #006eff;
+    --fides-blue-700: #007bff;
+    --fides-blue-500: #005eff;
+    --fides-gold: #F0C020;
+    --fides-orange: #E46314;
+    --fides-ice: #E6EEF7;
+    background: radial-gradient(900px 600px at 15% 10%, rgba(255, 255, 255, 0.18), transparent 60%), radial-gradient(900px 600px at 85% 25%, rgba(64, 104, 172, .25), transparent 60%), linear-gradient(180deg, var(--fides-blue-900), #005eff 75%);
+}
+
+.fides-card {
+    border-radius: 22px;
+    background: rgba(255, 0, 221, 0.08);
+    border: 1px solid rgba(255, 255, 255, .14);
+    box-shadow: 0 18px 60px rgba(59, 0, 196, 0.45);
+    backdrop-filter: blur(12px);
+}
+
+.fides-badge {
+    display: inline-block;
+    padding: .45rem .7rem;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    font-size: .75rem;
+    color: #0b1220;
+    background: linear-gradient(90deg, var(--fides-gold), #ffd86b);
+}
+
+.fides-list {
+    list-style: none;
+    padding: 0;
+    color: rgba(255, 255, 255, .86);
+}
+
+.fides-list li {
+    margin-bottom: .45rem;
+}
+
+
+/* ====== FORM (inputs aparecendo) ====== */
+
+.fides-form-inner .form-label {
+    color: rgba(255, 255, 255, .85);
+    font-weight: 600;
+}
+
+.fides-form-inner .form-control,
+.fides-form-inner .form-select {
+    border-radius: 14px;
+    padding: .85rem .95rem;
+    border: 1px solid rgba(255, 255, 255, .18);
+    /* aqui está o “segredo” pra aparecer bem:
+     fundo mais claro dentro do card + texto escuro */
+    background: rgba(230, 238, 247, .92);
+    color: #0b1220;
+}
+
+.fides-form-inner .form-control::placeholder {
+    color: rgba(11, 18, 32, .55);
+}
+
+.fides-form-inner .form-control:focus,
+.fides-form-inner .form-select:focus {
+    border-color: rgba(240, 192, 32, .75);
+    box-shadow: 0 0 0 .2rem rgba(240, 192, 32, .22);
+}
+
+
+/* ====== BOTÃO IMPACTANTE ====== */
+
+.fides-btn {
+    border: 0;
+    border-radius: 14px;
+    padding: .95rem 1rem;
+    font-weight: 800;
+    letter-spacing: .3px;
+    color: #0b1220;
+    background: linear-gradient(90deg, var(--fides-orange), #ffb15c);
+    box-shadow: 0 16px 38px rgba(228, 99, 20, .28);
+    transform: translateY(0);
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+
+.fides-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 45px rgba(228, 99, 20, .35);
+    filter: saturate(1.05);
+}
+
+.fides-note {
+    color: rgba(255, 255, 255, .72);
+}
+
+
+/* utilitário */
+
+.text-white-75 {
+    color: rgba(255, 255, 255, .75) !important;
+}
+
+
+/* ====== BOTÃO PADRÃO FIDES (LARANJA) ====== */
+
+.btn-fides {
+    --fides-orange: #E46314;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    padding: .85rem 1.2rem;
+    border-radius: 14px;
+    border: 0;
+    font-weight: 900;
+    letter-spacing: .3px;
+    text-decoration: none;
+    color: #0b1220;
+    background: linear-gradient(90deg, var(--fides-orange), #ffb15c);
+    box-shadow: 0 16px 38px rgba(228, 99, 20, .22);
+    cursor: pointer;
+    transform: translateY(0);
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease, opacity .15s ease;
+}
+
+.btn-fides:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 45px rgba(228, 99, 20, .28);
+    filter: saturate(1.05);
+}
+
+.btn-fides:active {
+    transform: translateY(0);
+    box-shadow: 0 12px 28px rgba(228, 99, 20, .25);
+}
+
+.btn-fides:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 177, 92, .45), 0 16px 38px rgba(228, 99, 20, .22);
+}
+
+.btn-fides-1 {
+    --fides-orange: #cc74ff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    padding: .85rem 1.2rem;
+    border-radius: 14px;
+    border: 0;
+    font-weight: 900;
+    letter-spacing: .3px;
+    text-decoration: none;
+    color: #ffffff;
+    background: linear-gradient(90deg, var(--fides-orange), #f700ff);
+    box-shadow: 0 16px 38px rgba(255, 0, 242, 0.22);
+    cursor: pointer;
+    transform: translateY(0);
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease, opacity .15s ease;
+}
+
+.btn-fides-1:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 45px rgba(204, 20, 228, 0.28);
+    filter: saturate(1.05);
+}
+
+.btn-fides-1:active {
+    transform: translateY(0);
+    box-shadow: 0 12px 28px rgba(162, 20, 228, 0.25);
+}
+
+.btn-fides-1:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(250, 92, 255, 0.45), 0 16px 38px rgba(228, 99, 20, .22);
+}
+
+
+/* =========================
+  [Fides] CALCULADORA ROI - CSS
+  Seção: #calculadora-roi
+========================== */
+
+.fides-roi {
+    --p900: #3A1B8F;
+    --p700: #5A2CCB;
+    --p500: #7A46FF;
+    --b700: #1E4BD8;
+    --b500: #4D84FF;
+    --ice: #EEF4FF;
+    background: radial-gradient(900px 550px at 10% 10%, rgba(122, 70, 255, .20), transparent 60%), radial-gradient(900px 550px at 90% 20%, rgba(30, 75, 216, .18), transparent 60%), linear-gradient(180deg, #F7FAFF, var(--ice));
+}
+
+.roi-hero {
+    text-align: center;
+}
+
+.roi-badge {
+    display: inline-block;
+    padding: .45rem .8rem;
+    border-radius: 999px;
+    font-weight: 900;
+    letter-spacing: .5px;
+    font-size: .75rem;
+    color: #fff;
+    background: linear-gradient(90deg, var(--p700), var(--b500));
+    box-shadow: 0 12px 28px rgba(90, 44, 203, .18);
+}
+
+.roi-title {
+    margin: .9rem 0 .3rem;
+    font-weight: 900;
+    color: #1b1b2a;
+    letter-spacing: -.3px;
+}
+
+.roi-subtitle {
+    color: rgba(27, 27, 42, .72);
+    margin: 0 auto;
+    max-width: 720px;
+}
+
+.roi-card {
+    border-radius: 22px;
+    background: rgba(255, 255, 255, .72);
+    border: 1px solid rgba(90, 44, 203, .18);
+    box-shadow: 0 18px 60px rgba(30, 20, 90, .18);
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+}
+
+.roi-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--p700), var(--b500), var(--p500));
+}
+
+.roi-h3 {
+    font-size: 1.05rem;
+    font-weight: 900;
+    color: #1b1b2a;
+    margin: .25rem 0 .25rem;
+}
+
+.roi-divider {
+    margin: 1rem 0;
+    opacity: .15;
+}
+
+.fides-roi .form-label {
+    font-weight: 800;
+    color: rgba(27, 27, 42, .86);
+}
+
+.fides-roi .form-control,
+.fides-roi .form-select {
+    border-radius: 14px;
+    padding: .85rem .95rem;
+    border: 1px solid rgba(90, 44, 203, .20);
+    background: rgba(255, 255, 255, .95);
+    color: #0b1220;
+}
+
+.fides-roi .form-control:focus,
+.fides-roi .form-select:focus {
+    border-color: rgba(122, 70, 255, .55);
+    box-shadow: 0 0 0 .2rem rgba(122, 70, 255, .18);
+}
+
+.roi-help {
+    font-size: .85rem;
+    color: rgba(27, 27, 42, .58);
+    margin-top: .25rem;
+}
+
+.roi-disclaimer {
+    font-size: .85rem;
+    color: rgba(27, 27, 42, .55);
+}
+
+.roi-main {
+    border-radius: 18px;
+    background: linear-gradient(90deg, rgba(90, 44, 203, .12), rgba(77, 132, 255, .10));
+    border: 1px solid rgba(90, 44, 203, .16);
+    padding: 1.1rem 1.1rem;
+}
+
+.roi-main-label {
+    font-weight: 900;
+    color: rgba(27, 27, 42, .78);
+    font-size: .9rem;
+}
+
+.roi-main-value {
+    font-weight: 1000;
+    font-size: 2rem;
+    letter-spacing: -.5px;
+    color: #1b1b2a;
+    margin-top: .2rem;
+}
+
+.roi-main-sub {
+    color: rgba(27, 27, 42, .62);
+    margin-top: .25rem;
+    font-size: .92rem;
+}
+
+.roi-box {
+    border-radius: 16px;
+    background: rgba(255, 255, 255, .85);
+    border: 1px solid rgba(90, 44, 203, .12);
+    padding: .95rem .95rem;
+    box-shadow: 0 10px 22px rgba(30, 20, 90, .06);
+}
+
+.roi-box-title {
+    font-size: .85rem;
+    color: rgba(27, 27, 42, .65);
+    font-weight: 800;
+}
+
+.roi-box-value {
+    font-weight: 950;
+    color: #1b1b2a;
+    font-size: 1.15rem;
+    margin-top: .2rem;
+}
+
+.roi-highlight {
+    border-radius: 18px;
+    padding: 1rem 1.05rem;
+    background: rgba(58, 27, 143, .06);
+    border: 1px solid rgba(58, 27, 143, .10);
+}
+
+.roi-highlight-title {
+    font-weight: 900;
+    color: #1b1b2a;
+    margin-bottom: .25rem;
+}
+
+.roi-highlight-text {
+    color: rgba(27, 27, 42, .72);
+    margin: 0;
+}
+
+.roi-cta {
+    border-radius: 18px;
+    padding: 1.05rem 1.05rem;
+    background: linear-gradient(90deg, rgba(90, 44, 203, .12), rgba(77, 132, 255, .10));
+    border: 1px solid rgba(90, 44, 203, .16);
+}
+
+.roi-cta-title {
+    font-weight: 950;
+    color: #1b1b2a;
+}
+
+.roi-cta-text {
+    color: rgba(27, 27, 42, .72);
+}
+
+
+/* =========================
+  [EMPRESARIAL] A DOR REAL — VERTICAL CARDS (estilo Hostinger)
+  Classes: .fides-dor-*
+========================== */
+
+.fides-dor-vcards {
+    padding: 76px 0;
+    background: #ffffff;
+}
+
+.fides-dor-title {
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    margin-bottom: 10px;
+}
+
+.fides-dor-lead {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.fides-dor-subtitle {
+    color: #6c757d;
+    margin: 0;
+}
+
+
+/* Card */
+
+.fides-dor-card {
+    background: #f8f9fa;
+    border: 1px solid rgba(0, 0, 0, .06);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, .10);
+    height: 100%;
+    display: flex;
+    grid-template-columns: 1.15fr .85fr;
+    flex-direction: column !important;
+}
+
+.fides-dor-card__content {
+    padding: 28px 26px;
+    flex: 1 !important;
+}
+
+.fides-dor-card__title {
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin: 10px 0 10px;
+}
+
+.fides-dor-card__desc {
+    color: #6c757d;
+    margin-bottom: 14px;
+    line-height: 1.55;
+}
+
+
+/* Kicker */
+
+.fides-dor-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(13, 110, 253, .12);
+    color: #0d6efd;
+    font-weight: 800;
+    font-size: .9rem;
+    border: 1px solid rgba(13, 110, 253, .18);
+}
+
+.fides-dor-kicker--alert {
+    background: rgba(255, 140, 0, .14);
+    color: #ff8c00;
+    border-color: rgba(255, 140, 0, .22);
+}
+
+
+/* Lista */
+
+.fides-dor-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+    display: grid;
+    gap: 10px;
+}
+
+.fides-dor-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-weight: 700;
+    color: #212529;
+    line-height: 1.35;
+}
+
+.fides-dor-list i {
+    margin-top: 2px;
+    font-size: 1.1rem;
+    color: #0d6efd;
+    /* se quiser trocar pra cor Fides */
+}
+
+
+/* rodapé do card 1 */
+
+.fides-dor-foot {
+    margin: 10px 0 0;
+    color: #212529;
+}
+
+
+/* destaque do card NR-01 */
+
+.fides-dor-card--highlight {
+    background: #ffffff;
+    border: 1px solid rgba(255, 140, 0, .22);
+}
+
+.fides-dor-cta {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    font-weight: 900;
+    text-align: center;
+    background: rgba(255, 140, 0, .12);
+    border: 1px solid rgba(255, 140, 0, .22);
+    color: #212529;
+}
+
+
+/* Lado imagem */
+
+
+/* Área da imagem com altura definida */
+
+.fides-dor-card__media {
+    padding: 18px;
+    height: 260px;
+    /* desktop */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: auto !important;
+}
+
+
+/* Imagem preenche a área */
+
+.fides-dor-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* preenche e corta o excedente */
+    border-radius: 16px;
+    display: block;
+}
+
+
+/* Mobile: menor altura */
+
+@media (max-width: 991px) {
+    .fides-dor-card__media {
+        height: 210px;
+    }
+}
+
+
+/* Hover */
+
+@media (hover:hover) {
+    .fides-dor-card {
+        transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .fides-dor-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 26px 78px rgba(0, 0, 0, .14);
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 991px) {
+    .fides-dor-card {
+        grid-template-columns: 1fr;
+    }
+    .fides-dor-card__media img {
+        max-height: 220px;
+    }
+}
+
+
+/* =========================
+  [Fides] SEÇÃO — COMO A FIDES RESOLVE
+========================== */
+
+.fides-resolve {
+    background: radial-gradient(800px 500px at 15% 10%, rgba(122, 70, 255, .18), transparent 60%), radial-gradient(800px 500px at 85% 20%, rgba(30, 75, 216, .14), transparent 60%), linear-gradient(180deg, #F7FAFF, #EEF4FF);
+}
+
+.resolve-kicker {
+    display: inline-block;
+    padding: .45rem .85rem;
+    border-radius: 999px;
+    font-weight: 950;
+    letter-spacing: .6px;
+    font-size: .72rem;
+    color: #fff;
+    background: linear-gradient(90deg, #5A2CCB, #4D84FF);
+    box-shadow: 0 12px 28px rgba(90, 44, 203, .18);
+}
+
+.resolve-title {
+    margin-top: .85rem;
+    font-weight: 950;
+    color: #1b1b2a;
+    letter-spacing: -.3px;
+}
+
+.resolve-subtitle {
+    color: rgba(27, 27, 42, .72);
+    font-size: 1.05rem;
+}
+
+
+/* Card único (o essencial) */
+
+.resolve-card {
+    border-radius: 22px;
+    background: rgba(255, 255, 255, .74);
+    border: 1px solid rgba(90, 44, 203, .18);
+    box-shadow: 0 18px 60px rgba(30, 20, 90, .16);
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+}
+
+.resolve-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 6px;
+    background: linear-gradient(90deg, #5A2CCB, #4D84FF, #7A46FF);
+}
+
+
+/* Checklist em grid */
+
+.resolve-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .75rem;
+    margin-top: .35rem;
+}
+
+@media (min-width: 768px) {
+    .resolve-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.resolve-item {
+    position: relative;
+    padding-left: 1.55rem;
+    font-weight: 800;
+    color: rgba(27, 27, 42, .86);
+    line-height: 1.25;
+}
+
+.resolve-item::before {
+    content: "✔️";
+    position: absolute;
+    left: 0;
+    top: .05rem;
+}
+
+
+/* Frase ouro */
+
+.resolve-bottom {
+    border-top: 1px solid rgba(90, 44, 203, .14);
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    align-items: center;
+    text-align: center;
+}
+
+.resolve-gold {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #1b1b2a;
+}
+
+.resolve-gold strong {
+    color: #E46314;
+    /* conversa com botão */
+}
+
+
+/* CTA alinhado, sem gritar */
+
+.resolve-cta a {
+    text-decoration: none;
+}
+
+
+/* =========================
+  [Fides] SEÇÃO ÚNICA — PROTEÇÃO EMPRESARIAL
+========================== */
+
+
+/* =========================
+  [Fides] SEÇÃO — NÃO É PLANO. É SOLUÇÃO.
+  ID: #solucao-nao-plano
+========================== */
+
+.fides-solucao {
+    background: radial-gradient(900px 550px at 20% 10%, rgba(122, 70, 255, .16), transparent 60%), radial-gradient(900px 550px at 80% 25%, rgba(30, 75, 216, .12), transparent 60%), linear-gradient(180deg, #F7FAFF, #EEF4FF);
+}
+
+
+/* Topo */
+
+.solucao-title {
+    font-weight: 950;
+    color: #1b1b2a;
+    letter-spacing: -.3px;
+}
+
+.solucao-subtitle {
+    max-width: 820px;
+    margin: 0 auto;
+    color: rgba(27, 27, 42, .72);
+    font-size: 1.05rem;
+}
+
+
+/* =========================
+   CARDS: mobile = arrastar / desktop = 3 colunas
+========================== */
+
+.solucao-cards {
+    /* mobile-first: carrossel horizontal */
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 6px 4px 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.solucao-cards::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* cards iguais e com mesma altura */
+
+.solucao-card {
+    flex: 0 0 88%;
+    min-width: 280px;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    border-radius: 22px;
+    padding: 18px 18px;
+    background: rgba(255, 255, 255, .82);
+    border: 1px solid rgba(27, 27, 42, .10);
+    box-shadow: 0 14px 40px rgba(30, 20, 90, .10);
+    /* mesma altura */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+/* Desktop: 3 colunas fixas e mesma altura */
+
+@media (min-width: 992px) {
+    .solucao-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        overflow: visible;
+        padding: 0;
+    }
+    .solucao-card {
+        flex: initial;
+        min-width: 0;
+    }
+}
+
+
+/* Ícone */
+
+
+/* Título do card */
+
+.solucao-card-title {
+    font-weight: 950;
+    color: #1b1b2a;
+    letter-spacing: -.2px;
+    font-size: 1.05rem;
+    line-height: 1.2;
+    margin: 0 0 10px 0;
+}
+
+
+/* Texto */
+
+.solucao-card-text {
+    margin: 0;
+    color: rgba(27, 27, 42, .80);
+    font-weight: 700;
+    line-height: 1.35;
+    /* garante altura consistente: o texto ocupa e o resto “empurra” */
+    flex: 1;
+}
+
+.solucao-card-muted {
+    display: block;
+    margin-top: 10px;
+    color: rgba(27, 27, 42, .58);
+    font-weight: 650;
+}
+
+
+/* Destaques por tipo */
+
+.solucao-card--bad .solucao-icon {
+    background: rgba(228, 99, 20, .10);
+    border-color: rgba(228, 99, 20, .16);
+}
+
+.solucao-card--good {
+    background: rgba(255, 255, 255, .92);
+    border-color: rgba(72, 0, 255, 0.22);
+    box-shadow: 0 20px 60px rgba(30, 20, 90, .16);
+}
+
+.solucao-card--good .solucao-icon {
+    background: rgba(90, 44, 203, .12);
+    border-color: rgba(90, 44, 203, .18);
+}
+
+.solucao-card--who .solucao-icon {
+    background: rgba(30, 75, 216, .10);
+    border-color: rgba(30, 75, 216, .16);
+}
+
+
+/* Footer */
+
+.solucao-impact {
+    font-size: 1.12rem;
+    font-weight: 850;
+    color: rgba(27, 27, 42, .85);
+}
+
+
+/* =========================
+  [Fides] MINI BLOCO — CONFIANÇA
+========================== */
+
+.fides-confiança {
+    background: linear-gradient(90deg, #660069);
+}
+
+.confianca-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(27, 27, 42, .10);
+    padding-top: .9rem;
+}
+
+.confianca-item {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    font-weight: 800;
+    font-size: .95rem;
+    white-space: nowrap;
+}
