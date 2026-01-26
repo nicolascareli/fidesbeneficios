@@ -458,6 +458,10 @@ body {
   [Fides] SEÇÃO PLANOS — PREMIUM
 ========================== */
 
+.letra-condicoes {
+    font-size: 0.8rem !important;
+}
+
 .planos-section {
     background: radial-gradient(900px 550px at 20% 10%, rgba(122, 70, 255, .14), transparent 60%), radial-gradient(900px 550px at 80% 25%, rgba(30, 75, 216, .10), transparent 60%), linear-gradient(180deg, #F7FAFF, #EEF4FF);
     padding: 80px 0;
