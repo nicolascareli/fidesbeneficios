@@ -2071,3 +2071,41 @@ body {
     font-size: .95rem;
     white-space: nowrap;
 }
+
+
+/* ========== ACCORDION BENEFÍCIOS ========== */
+
+.beneficios-section {
+    background: #ffffff;
+}
+
+.accordion-fides .accordion-item {
+    border: 1px solid rgba(90, 44, 203, .14);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    box-shadow: 0 10px 28px rgba(30, 20, 90, .06);
+}
+
+.accordion-fides .accordion-button {
+    font-weight: 900;
+    color: #1b1b2a;
+    background: rgba(255, 255, 255, .95);
+    box-shadow: none;
+}
+
+.accordion-fides .accordion-button:not(.collapsed) {
+    color: #ffffff;
+    background: linear-gradient(90deg, #5A2CCB, #4D84FF);
+}
+
+.accordion-fides .accordion-button:focus {
+    box-shadow: 0 0 0 .2rem rgba(90, 44, 203, .18);
+}
+
+.accordion-fides .accordion-body {
+    color: rgba(27, 27, 42, .76);
+    font-weight: 600;
+    line-height: 1.6;
+    background: #ffffff;
+}
